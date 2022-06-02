@@ -522,7 +522,12 @@ export const Block: React.FC<BlockProps> = (props) => {
       )
 
     case 'code':
-      return <components.Code block={block as types.CodeBlock} />
+      // return <components.Code block={block as types.CodeBlock} />
+      return (
+        <div
+          dangerouslySetInnerHTML={{__html: block.properties?.title[0][0]}}
+        />
+      )
 
     case 'column_list':
       return <div className={cs('notion-row', blockId)}>{children}</div>

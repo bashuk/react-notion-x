@@ -1921,7 +1921,7 @@ var SyncPointerBlock = ({ block, level }) => {
 var tocIndentLevelCache = {};
 var pageCoverStyleCache = {};
 var Block = (props) => {
-  var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P;
+  var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q;
   const ctx2 = useNotionContext();
   const {
     components,
@@ -2214,8 +2214,8 @@ var Block = (props) => {
         className: blockId
       });
     case "code":
-      return /* @__PURE__ */ React28.createElement(components.Code, {
-        block
+      return /* @__PURE__ */ React28.createElement("div", {
+        dangerouslySetInnerHTML: { __html: (_o = block.properties) == null ? void 0 : _o.title[0][0] }
       });
     case "column_list":
       return /* @__PURE__ */ React28.createElement("div", {
@@ -2223,9 +2223,9 @@ var Block = (props) => {
       }, children);
     case "column": {
       const spacerWidth = `min(32px, 4vw)`;
-      const ratio = ((_o = block.format) == null ? void 0 : _o.column_ratio) || 0.5;
-      const parent = (_p = recordMap.block[block.parent_id]) == null ? void 0 : _p.value;
-      const columns = ((_q = parent == null ? void 0 : parent.content) == null ? void 0 : _q.length) || Math.max(2, Math.ceil(1 / ratio));
+      const ratio = ((_p = block.format) == null ? void 0 : _p.column_ratio) || 0.5;
+      const parent = (_q = recordMap.block[block.parent_id]) == null ? void 0 : _q.value;
+      const columns = ((_r = parent == null ? void 0 : parent.content) == null ? void 0 : _r.length) || Math.max(2, Math.ceil(1 / ratio));
       const width = `calc((100% - (${columns - 1} * ${spacerWidth})) * ${ratio})`;
       const style = { width };
       return /* @__PURE__ */ React28.createElement(React28.Fragment, null, /* @__PURE__ */ React28.createElement("div", {
@@ -2238,7 +2238,7 @@ var Block = (props) => {
     case "quote": {
       if (!block.properties)
         return null;
-      const blockColor = (_r = block.format) == null ? void 0 : _r.block_color;
+      const blockColor = (_s = block.format) == null ? void 0 : _s.block_color;
       return /* @__PURE__ */ React28.createElement("blockquote", {
         className: cs("notion-quote", blockColor && `notion-${blockColor}`, blockId)
       }, /* @__PURE__ */ React28.createElement(Text, {
@@ -2260,13 +2260,13 @@ var Block = (props) => {
         });
       } else {
         return /* @__PURE__ */ React28.createElement("div", {
-          className: cs("notion-callout", ((_s = block.format) == null ? void 0 : _s.block_color) && `notion-${(_t = block.format) == null ? void 0 : _t.block_color}_co`, blockId)
+          className: cs("notion-callout", ((_t = block.format) == null ? void 0 : _t.block_color) && `notion-${(_u = block.format) == null ? void 0 : _u.block_color}_co`, blockId)
         }, /* @__PURE__ */ React28.createElement(PageIcon, {
           block
         }), /* @__PURE__ */ React28.createElement("div", {
           className: "notion-callout-text"
         }, /* @__PURE__ */ React28.createElement(Text, {
-          value: (_u = block.properties) == null ? void 0 : _u.title,
+          value: (_v = block.properties) == null ? void 0 : _v.title,
           block
         }), children));
       }
@@ -2274,7 +2274,7 @@ var Block = (props) => {
       if (!block.properties)
         return null;
       const link = block.properties.link;
-      if (!link || !((_v = link[0]) == null ? void 0 : _v[0]))
+      if (!link || !((_w = link[0]) == null ? void 0 : _w[0]))
         return null;
       let title = getTextContent2(block.properties.title);
       if (!title) {
@@ -2294,35 +2294,35 @@ var Block = (props) => {
       }, /* @__PURE__ */ React28.createElement(components.Link, {
         target: "_blank",
         rel: "noopener noreferrer",
-        className: cs("notion-bookmark", ((_w = block.format) == null ? void 0 : _w.block_color) && `notion-${block.format.block_color}`, blockId),
+        className: cs("notion-bookmark", ((_x = block.format) == null ? void 0 : _x.block_color) && `notion-${block.format.block_color}`, blockId),
         href: link[0][0]
       }, /* @__PURE__ */ React28.createElement("div", null, title && /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-title"
       }, /* @__PURE__ */ React28.createElement(Text, {
         value: [[title]],
         block
-      })), ((_x = block.properties) == null ? void 0 : _x.description) && /* @__PURE__ */ React28.createElement("div", {
+      })), ((_y = block.properties) == null ? void 0 : _y.description) && /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-description"
       }, /* @__PURE__ */ React28.createElement(Text, {
-        value: (_y = block.properties) == null ? void 0 : _y.description,
+        value: (_z = block.properties) == null ? void 0 : _z.description,
         block
       })), /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-link"
-      }, ((_z = block.format) == null ? void 0 : _z.bookmark_icon) && /* @__PURE__ */ React28.createElement("div", {
+      }, ((_A = block.format) == null ? void 0 : _A.bookmark_icon) && /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-link-icon"
       }, /* @__PURE__ */ React28.createElement(LazyImage, {
-        src: mapImageUrl((_A = block.format) == null ? void 0 : _A.bookmark_icon, block),
+        src: mapImageUrl((_B = block.format) == null ? void 0 : _B.bookmark_icon, block),
         alt: title
       })), /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-link-text"
       }, /* @__PURE__ */ React28.createElement(Text, {
         value: link,
         block
-      })))), ((_B = block.format) == null ? void 0 : _B.bookmark_cover) && /* @__PURE__ */ React28.createElement("div", {
+      })))), ((_C = block.format) == null ? void 0 : _C.bookmark_cover) && /* @__PURE__ */ React28.createElement("div", {
         className: "notion-bookmark-image"
       }, /* @__PURE__ */ React28.createElement(LazyImage, {
-        src: mapImageUrl((_C = block.format) == null ? void 0 : _C.bookmark_cover, block),
-        alt: getTextContent2((_D = block.properties) == null ? void 0 : _D.title),
+        src: mapImageUrl((_D = block.format) == null ? void 0 : _D.bookmark_cover, block),
+        alt: getTextContent2((_E = block.properties) == null ? void 0 : _E.title),
         style: {
           objectFit: "cover"
         }
@@ -2332,7 +2332,7 @@ var Block = (props) => {
       return /* @__PURE__ */ React28.createElement("details", {
         className: cs("notion-toggle", blockId)
       }, /* @__PURE__ */ React28.createElement("summary", null, /* @__PURE__ */ React28.createElement(Text, {
-        value: (_E = block.properties) == null ? void 0 : _E.title,
+        value: (_F = block.properties) == null ? void 0 : _F.title,
         block
       })), /* @__PURE__ */ React28.createElement("div", null, children));
     case "table_of_contents": {
@@ -2340,7 +2340,7 @@ var Block = (props) => {
       if (!page)
         return null;
       const toc = getPageTableOfContents(page, recordMap);
-      const blockColor = (_F = block.format) == null ? void 0 : _F.block_color;
+      const blockColor = (_G = block.format) == null ? void 0 : _G.block_color;
       return /* @__PURE__ */ React28.createElement("div", {
         className: cs("notion-table-of-contents", blockColor && `notion-${blockColor}`, blockId)
       }, toc.map((tocItem) => /* @__PURE__ */ React28.createElement("a", {
@@ -2356,7 +2356,7 @@ var Block = (props) => {
       }, tocItem.text))));
     }
     case "to_do": {
-      const isChecked = ((_I = (_H = (_G = block.properties) == null ? void 0 : _G.checked) == null ? void 0 : _H[0]) == null ? void 0 : _I[0]) === "Yes";
+      const isChecked = ((_J = (_I = (_H = block.properties) == null ? void 0 : _H.checked) == null ? void 0 : _I[0]) == null ? void 0 : _J[0]) === "Yes";
       return /* @__PURE__ */ React28.createElement("div", {
         className: cs("notion-to-do", blockId)
       }, /* @__PURE__ */ React28.createElement("div", {
@@ -2367,7 +2367,7 @@ var Block = (props) => {
       }), /* @__PURE__ */ React28.createElement("div", {
         className: cs("notion-to-do-body", isChecked && `notion-to-do-checked`)
       }, /* @__PURE__ */ React28.createElement(Text, {
-        value: (_J = block.properties) == null ? void 0 : _J.title,
+        value: (_K = block.properties) == null ? void 0 : _K.title,
         block
       }))), /* @__PURE__ */ React28.createElement("div", {
         className: "notion-to-do-children"
@@ -2383,8 +2383,8 @@ var Block = (props) => {
         level: level + 1
       }, props));
     case "alias": {
-      const blockPointerId = (_L = (_K = block == null ? void 0 : block.format) == null ? void 0 : _K.alias_pointer) == null ? void 0 : _L.id;
-      const linkedBlock = (_M = recordMap.block[blockPointerId]) == null ? void 0 : _M.value;
+      const blockPointerId = (_M = (_L = block == null ? void 0 : block.format) == null ? void 0 : _L.alias_pointer) == null ? void 0 : _M.id;
+      const linkedBlock = (_N = recordMap.block[blockPointerId]) == null ? void 0 : _N.value;
       if (!linkedBlock) {
         console.log('"alias" missing block', blockPointerId);
         return null;
@@ -2401,9 +2401,9 @@ var Block = (props) => {
         className: cs("notion-simple-table", blockId)
       }, /* @__PURE__ */ React28.createElement("tbody", null, children));
     case "table_row": {
-      const tableBlock = (_N = recordMap.block[block.parent_id]) == null ? void 0 : _N.value;
-      const order = (_O = tableBlock.format) == null ? void 0 : _O.table_block_column_order;
-      const formatMap = (_P = tableBlock.format) == null ? void 0 : _P.table_block_column_format;
+      const tableBlock = (_O = recordMap.block[block.parent_id]) == null ? void 0 : _O.value;
+      const order = (_P = tableBlock.format) == null ? void 0 : _P.table_block_column_order;
+      const formatMap = (_Q = tableBlock.format) == null ? void 0 : _Q.table_block_column_format;
       if (!tableBlock || !order) {
         return null;
       }
