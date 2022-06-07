@@ -524,7 +524,7 @@ export const Block: React.FC<BlockProps> = (props) => {
     case 'code':
       // return <components.Code block={block as types.CodeBlock} />
       return (
-        <div className='inline-code-embed'
+        <div style={{width: "100%"}}
           dangerouslySetInnerHTML={{__html: block.properties?.title[0][0]}}
         />
       )

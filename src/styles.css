@@ -2793,7 +2793,3 @@ svg.notion-page-icon {
 .notion-collection-view-dropdown-content[data-state='open'] {
   animation-name: slideDownAndFade;
 }
-
-.inline-code-embed {
-  width: 100%;
-}
