@@ -2215,6 +2215,7 @@ var Block = (props) => {
       });
     case "code":
       return /* @__PURE__ */ React28.createElement("div", {
+        className: "inline-code-embed",
         dangerouslySetInnerHTML: { __html: (_o = block.properties) == null ? void 0 : _o.title[0][0] }
       });
     case "column_list":
